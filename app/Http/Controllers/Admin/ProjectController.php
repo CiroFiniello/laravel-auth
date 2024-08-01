@@ -25,7 +25,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.project.create');
     }
 
     /**
@@ -33,15 +33,20 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $data["author"] = Auth::user()->name;
+        $data["date"] = Carbon::now();
+        $newProject = Project::create($data);
+
+        return redirect()->route("admin.project.show", $newProject);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
-        //
+        return view('admin.project.show', compact("project"));
     }
 
     /**
