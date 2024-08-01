@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\PostController as AdminPostController;
+use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\HomeController as GuestHomeController;
 
 /*
@@ -23,7 +25,8 @@ Auth::routes();
 
 Route::get('/home', [GuestHomeController::class, 'index'])->name('home');
 
-Route::middleware('auth')->name('admin.')->prefix('admin')->group(function(){
-    // Route::get('secret-home', [AdminHomeController::class, 'index'])->name('secret-home');
-    // Route::resource('user', AdminHomeController::class);
+    Route::middleware('auth')->name('admin.')->prefix('admin')->group(function(){
+    Route::resource("/project", AdminProjectController::class);
 });
+
+
