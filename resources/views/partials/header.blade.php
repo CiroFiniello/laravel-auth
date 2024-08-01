@@ -13,14 +13,14 @@
                 <a class="nav-link " href="#" role="button">
                     Homepage
                 </a>
-                @if (Route::has('admin.posts.index'))
+                @if (Route::has('admin.project.index'))
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.posts.index') }}">{{ __('Posts') }}</a>
+                    <a class="nav-link" href="{{ route('admin.project.index') }}">{{ __('Projects') }}</a>
                 </li>
                 @endif
-                @if (Route::has('admin.posts.create'))
+                @if (Route::has('admin.project.create'))
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.posts.create') }}">{{ __('Create new post') }}</a>
+                    <a class="nav-link" href="{{ route('admin.project.create') }}">{{ __('Create new project') }}</a>
                 </li>
                 @endif
             </ul>
