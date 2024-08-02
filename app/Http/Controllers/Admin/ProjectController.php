@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProjectRequest;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use Carbon\Carbon;
@@ -16,7 +17,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::paginate(10);
+
+        // $projects = Project::all();
         return view('admin.project.index', compact('projects'));
     }
 
@@ -25,22 +28,23 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.project.create');
+        $project = new Project();
+        return view('admin.project.create', compact("project"));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        $data = $request->all();
+        $data = $request->validated();
+
         $data["author"] = Auth::user()->name;
         $data["date"] = Carbon::now();
         $newProject = Project::create($data);
 
         return redirect()->route("admin.project.show", $newProject);
     }
-
     /**
      * Display the specified resource.
      */

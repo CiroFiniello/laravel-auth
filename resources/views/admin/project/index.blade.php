@@ -23,11 +23,18 @@
                             <td>{{ $project->title }}</td>
                             <td>{{ $project->author }}</td>
                             <td>{{ $project->date}}</td>
-                            <td><a href="{{route('admin.project.show', $project)}}" class="btn btn-primary btn-sm">Show</a></td>
+                            <td>
+                                <a href="{{route('admin.project.show', $project)}}" class="btn btn-primary btn-sm">Show</a>
+                                <a href="{{route('admin.project.edit', $project)}}" class="btn btn-success btn-sm">Edit</a>
+                                {{-- <a href="{{route('admin.project.delete', $project)}}" class="btn btn-warning btn-sm">Delete</a> --}}
+
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
+
+                {{ $projects->links() }}
         </div>
     </div>
 </div>

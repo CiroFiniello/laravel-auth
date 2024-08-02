@@ -10,12 +10,13 @@ class Project extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $table = 'projects';
 
     protected $fillable = [
-        "title",
-        "author",
-        "content",
-        "date",
-        "image",
+        'title',
+        'image',
+        'content',
+        'author',
+        'date',
     ];
 }
